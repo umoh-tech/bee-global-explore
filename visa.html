@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Visa Assistance | Bee Global Explore</title>
+<meta name="description" content="Get guidance and support with your visa application — select your destination and visa type to see requirements and start your application.">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="assets/js/tw-config.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/main.css">
+
+</head>
+<body class="font-body text-navy antialiased" data-page="visa" data-wa-msg="Hello Bee Global Explore, I'd like help with a visa application.">
+
+<header class="fixed top-0 inset-x-0 z-50 bg-paper/90 backdrop-blur border-b border-navy/10">
+  <div class="max-w-7xl mx-auto px-5 md:px-8 flex items-center justify-between h-18 py-3">
+    <a href="index.html" class="flex items-center gap-3">
+      <span class="hex-sm bg-navy text-honey flex items-center justify-center">
+        <i class="ph ph-airplane-tilt text-lg"></i>
+      </span>
+      <span class="font-display font-semibold text-lg md:text-xl tracking-tight leading-none">
+        BEE GLOBAL<br class="hidden sm:block"><span class="text-honey">·</span> EXPLORE
+      </span>
+    </a>
+
+    <nav class="hidden lg:flex items-center gap-7 font-medium text-sm">
+      <a href="index.html" class="hover:text-honey transition">Home</a>
+      <div class="relative">
+        <button id="servicesTrigger" class="flex items-center gap-1 hover:text-honey transition" aria-expanded="false">
+          Services <i class="ph ph-caret-down text-xs"></i>
+        </button>
+        <div id="servicesPanel" class="hidden absolute top-full left-1/2 -translate-x-1/2 mt-3 w-72 bg-navy rounded-2xl shadow-2xl p-3 grid gap-1">
+          <a href="flights.html" class="flex items-center gap-3 px-4 py-3 hover:bg-navy2 rounded-lg transition">
+          <span class="hex-sm bg-navy2 text-honey flex items-center justify-center flex-shrink-0"><i class="ph ph-airplane-tilt"></i></span>
+          <span class="text-sm font-medium text-paper">Flight Reservation</span>
+        </a><a href="hotels.html" class="flex items-center gap-3 px-4 py-3 hover:bg-navy2 rounded-lg transition">
+          <span class="hex-sm bg-navy2 text-honey flex items-center justify-center flex-shrink-0"><i class="ph ph-buildings"></i></span>
+          <span class="text-sm font-medium text-paper">Hotel Reservation</span>
+        </a><a href="visa.html" class="flex items-center gap-3 px-4 py-3 hover:bg-navy2 rounded-lg transition">
+          <span class="hex-sm bg-navy2 text-honey flex items-center justify-center flex-shrink-0"><i class="ph ph-stamp"></i></span>
+          <span class="text-sm font-medium text-paper">Visa Assistance</span>
+        </a><a href="packages.html" class="flex items-center gap-3 px-4 py-3 hover:bg-navy2 rounded-lg transition">
+          <span class="hex-sm bg-navy2 text-honey flex items-center justify-center flex-shrink-0"><i class="ph ph-island"></i></span>
+          <span class="text-sm font-medium text-paper">Holiday Packages</span>
+        </a><a href="transfers.html" class="flex items-center gap-3 px-4 py-3 hover:bg-navy2 rounded-lg transition">
+          <span class="hex-sm bg-navy2 text-honey flex items-center justify-center flex-shrink-0"><i class="ph ph-car"></i></span>
+          <span class="text-sm font-medium text-paper">Airport Transfers</span>
+        </a><a href="goods.html" class="flex items-center gap-3 px-4 py-3 hover:bg-navy2 rounded-lg transition">
+          <span class="hex-sm bg-navy2 text-honey flex items-center justify-center flex-shrink-0"><i class="ph ph-package"></i></span>
+          <span class="text-sm font-medium text-paper">Goods Delivery</span>
+        </a><a href="passport.html" class="flex items-center gap-3 px-4 py-3 hover:bg-navy2 rounded-lg transition">
+          <span class="hex-sm bg-navy2 text-honey flex items-center justify-center flex-shrink-0"><i class="ph ph-identification-card"></i></span>
+          <span class="text-sm font-medium text-paper">Passport Assistance</span>
+        </a><a href="school.html" class="flex items-center gap-3 px-4 py-3 hover:bg-navy2 rounded-lg transition">
+          <span class="hex-sm bg-navy2 text-honey flex items-center justify-center flex-shrink-0"><i class="ph ph-graduation-cap"></i></span>
+          <span class="text-sm font-medium text-paper">School Services & IELTS</span>
+        </a>
+        </div>
+      </div>
+      <a href="packages.html" class="hover:text-honey transition">Packages</a>
+      <a href="enquiry.html" class="hover:text-honey transition">Enquiry</a>
+    </nav>
+
+    <div class="hidden lg:flex items-center gap-4">
+      <a href="tel:+2349160026720" class="text-sm font-mono text-navy/70 hover:text-honey">
+        <i class="ph ph-phone mr-1"></i>+234 916 002 6720
+      </a>
+      <a href="enquiry.html" class="btn-honey px-5 py-2.5 rounded-full text-sm font-semibold shadow-sm hover:shadow-md transition">
+        Get a Quote
+      </a>
+    </div>
+
+    <button id="menuBtn" class="lg:hidden text-2xl" aria-label="Open menu" aria-expanded="false">
+      <i class="ph ph-list"></i>
+    </button>
+  </div>
+
+  <div id="mobileMenu" class="lg:hidden hidden border-t border-navy/10 bg-paper max-h-[80vh] overflow-y-auto">
+    <div class="px-5 py-4 flex flex-col gap-3 font-medium">
+      <a href="index.html" class="mobile-link">Home</a>
+      <p class="font-mono text-xs tracking-widest text-navy/40 mt-2">SERVICES</p>
+      <a href="flights.html" class="mobile-link flex items-center gap-2 pl-4 text-sm text-navy/80"><i class="ph ph-airplane-tilt"></i>Flight Reservation</a><a href="hotels.html" class="mobile-link flex items-center gap-2 pl-4 text-sm text-navy/80"><i class="ph ph-buildings"></i>Hotel Reservation</a><a href="visa.html" class="mobile-link flex items-center gap-2 pl-4 text-sm text-navy/80"><i class="ph ph-stamp"></i>Visa Assistance</a><a href="packages.html" class="mobile-link flex items-center gap-2 pl-4 text-sm text-navy/80"><i class="ph ph-island"></i>Holiday Packages</a><a href="transfers.html" class="mobile-link flex items-center gap-2 pl-4 text-sm text-navy/80"><i class="ph ph-car"></i>Airport Transfers</a><a href="goods.html" class="mobile-link flex items-center gap-2 pl-4 text-sm text-navy/80"><i class="ph ph-package"></i>Goods Delivery</a><a href="passport.html" class="mobile-link flex items-center gap-2 pl-4 text-sm text-navy/80"><i class="ph ph-identification-card"></i>Passport Assistance</a><a href="school.html" class="mobile-link flex items-center gap-2 pl-4 text-sm text-navy/80"><i class="ph ph-graduation-cap"></i>School Services & IELTS</a>
+      <a href="packages.html" class="mobile-link mt-2">Holiday Packages</a>
+      <a href="enquiry.html" class="mobile-link">General Enquiry</a>
+      <a href="enquiry.html" class="btn-honey px-5 py-3 rounded-full text-sm font-semibold text-center mt-3">Get a Quote</a>
+    </div>
+  </div>
+</header>
+
+<section class="page-banner text-paper pt-32 md:pt-40 pb-16 md:pb-20">
+  <div class="max-w-7xl mx-auto px-5 md:px-8 relative reveal">
+    <div class="flex items-center gap-4 mb-5">
+      <span class="hex bg-honey text-navy"><i class="ph ph-stamp text-2xl"></i></span>
+      <p class="font-mono text-xs tracking-[0.25em] text-honey uppercase">Visa Assistance</p>
+    </div>
+    <h1 class="font-display font-semibold text-4xl md:text-5xl leading-tight mb-4 max-w-2xl">Plan Your Visa Application</h1>
+    <p class="text-paper/70 text-lg max-w-2xl leading-relaxed">Select your destination and visa type to see general requirements and steps, then start your application with our team.</p>
+  </div>
+</section>
+
+<section class="py-16 md:py-24 bg-navy text-paper">
+  <div class="max-w-4xl mx-auto px-5 md:px-8">
+    <div class="note-box mb-10 reveal"><i class="ph ph-info mr-1"></i> Requirements vary by country and embassy. What's shown here is general guidance — we confirm the exact checklist for your specific application during consultation.</div>
+
+    <div class="grid md:grid-cols-2 gap-8 mb-10 reveal">
+      <div>
+        <label for="visaCountry" class="field-label">Destination Country</label>
+        <select id="visaCountry" class="field-input"></select>
+      </div>
+    </div>
+
+    <div class="mb-10 reveal">
+      <label class="field-label">Visa Type</label>
+      <div id="visaTypeOptions" class="grid sm:grid-cols-2 gap-3"></div>
+    </div>
+
+    <div id="visaResultPanel" class="hidden reveal">
+      <div class="bg-navy2 rounded-2xl p-7 md:p-9 mb-8">
+        <p class="font-mono text-xs tracking-widest text-honey uppercase mb-1">Selected</p>
+        <p class="font-display text-xl font-semibold mb-6"><span id="visaSummaryCountry"></span> — <span id="visaSummaryType"></span></p>
+
+        <p class="font-mono text-xs tracking-widest text-honey uppercase mb-3">Typical Required Documents</p>
+        <ul id="visaDocList" class="space-y-2 text-sm text-paper/85 mb-8"></ul>
+
+        <p class="font-mono text-xs tracking-widest text-honey uppercase mb-3">Estimated Processing</p>
+        <p class="text-sm text-paper/70 mb-8">Processing times vary by embassy and season — typically a few days to several weeks. We'll confirm current timelines for your destination when you start your application.</p>
+
+        <p class="font-mono text-xs tracking-widest text-honey uppercase mb-3">Application Steps</p>
+        <ol id="visaStepList" class="space-y-2 text-sm text-paper/85 mb-8"></ol>
+
+        <p class="text-sm text-paper/60 mb-6">Service fees depend on visa type and destination — we'll share full pricing during your consultation.</p>
+
+        <button id="startVisaAppBtn" class="btn-honey px-8 py-3.5 rounded-full font-semibold shadow-md hover:shadow-lg transition">
+          Start Visa Application <i class="ph ph-arrow-right ml-1"></i>
+        </button>
+      </div>
+    </div>
+
+    <div id="visaFormSection" class="hidden reveal">
+      <form id="visaForm" class="bg-navy2 rounded-2xl p-6 md:p-9 ticket-perf" novalidate>
+        <h3 class="font-display font-semibold text-xl mb-6">Submit Your Information</h3>
+
+        <div class="grid sm:grid-cols-2 gap-5 mb-5">
+          <div>
+            <label for="visaFormCountry" class="field-label">Destination Country</label>
+            <input id="visaFormCountry" name="country" type="text" readonly class="field-input opacity-80">
+          </div>
+          <div>
+            <label for="visaFormType" class="field-label">Visa Type</label>
+            <input id="visaFormType" name="visaType" type="text" readonly class="field-input opacity-80">
+          </div>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-5 mb-5">
+          <div>
+            <label for="vfullName" class="field-label">Full Name</label>
+            <input id="vfullName" name="fullName" type="text" required class="field-input">
+            <p class="field-err">Please enter your name.</p>
+          </div>
+          <div>
+            <label for="vphone" class="field-label">Phone / WhatsApp</label>
+            <input id="vphone" name="phone" type="tel" required class="field-input" placeholder="+234...">
+            <p class="field-err">Please enter a valid phone number.</p>
+          </div>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-5 mb-5">
+          <div>
+            <label for="vemail" class="field-label">Email</label>
+            <input id="vemail" name="email" type="email" required class="field-input">
+            <p class="field-err">Please enter a valid email address.</p>
+          </div>
+          <div>
+            <label for="vpassport" class="field-label">Passport Number (optional)</label>
+            <input id="vpassport" name="passportNumber" type="text" class="field-input">
+          </div>
+        </div>
+
+        <div class="mb-6">
+          <label for="vnotes" class="field-label">Anything else we should know?</label>
+          <textarea id="vnotes" name="notes" rows="3" class="field-input resize-none" placeholder="Travel dates, purpose of trip, questions..."></textarea>
+        </div>
+
+        <div class="mb-7">
+          <label class="field-label">Attach Documents (optional)</label>
+          <div id="visaDrop" class="file-drop">
+            <i class="ph ph-upload-simple text-2xl mb-2"></i>
+            <p class="text-sm text-paper/70">Click or drag files here</p>
+            <input id="visaFiles" type="file" multiple class="hidden">
+          </div>
+          <ul id="visaFileList" class="mt-3 space-y-1 text-sm text-paper/70"></ul>
+          <p class="text-xs text-paper/40 mt-2">This form can't upload files to our server yet — please also send copies of your documents directly via WhatsApp or email so we receive them.</p>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-4">
+          <button type="submit" class="btn-honey px-8 py-3.5 rounded-full font-semibold shadow-md hover:shadow-lg transition">Submit Application</button>
+          <a id="visaWaBtn" href="https://wa.me/2349160026720" target="_blank" rel="noopener"
+            class="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full font-semibold border-2 border-paper/30 hover:border-honey hover:text-honey transition">
+            <i class="ph ph-whatsapp-logo"></i> Continue on WhatsApp
+          </a>
+        </div>
+
+        <div id="visaSuccess" class="hidden mt-6 bg-teal/20 border border-teal text-paper rounded-lg px-5 py-4">
+          <p class="font-semibold mb-1"><i class="ph ph-check-circle mr-1"></i> Application details ready to send</p>
+          <p class="text-paper/80 text-sm">Your email app will open with your details filled in. Please also send your documents via WhatsApp or email so we can begin review.</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer class="bg-ink text-paper/70 pt-16 pb-8">
+  <div class="max-w-7xl mx-auto px-5 md:px-8">
+    <div class="grid md:grid-cols-4 gap-10 pb-10 border-b border-paper/10">
+      <div>
+        <div class="flex items-center gap-3 mb-4">
+          <span class="hex-sm bg-navy2 text-honey flex items-center justify-center"><i class="ph ph-airplane-tilt"></i></span>
+          <span class="font-display font-semibold text-lg text-paper">Bee Global Explore</span>
+        </div>
+        <p class="leading-relaxed">Make Your Travel Dream a Reality.</p>
+      </div>
+      <div>
+        <p class="font-mono text-xs tracking-widest text-honey mb-4">SERVICES</p>
+        <ul class="space-y-2 text-sm">
+          <li><a href="flights.html" class="hover:text-honey">Flight Reservation</a></li>
+          <li><a href="hotels.html" class="hover:text-honey">Hotel Reservation</a></li>
+          <li><a href="visa.html" class="hover:text-honey">Visa Assistance</a></li>
+          <li><a href="packages.html" class="hover:text-honey">Holiday Packages</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="font-mono text-xs tracking-widest text-honey mb-4">MORE SERVICES</p>
+        <ul class="space-y-2 text-sm">
+          <li><a href="transfers.html" class="hover:text-honey">Airport Transfers</a></li>
+          <li><a href="goods.html" class="hover:text-honey">Goods Delivery</a></li>
+          <li><a href="passport.html" class="hover:text-honey">Passport Assistance</a></li>
+          <li><a href="school.html" class="hover:text-honey">School Services &amp; IELTS</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="font-mono text-xs tracking-widest text-honey mb-4">GET IN TOUCH</p>
+        <p class="text-sm mb-2"><i class="ph ph-phone mr-2"></i>+234 916 002 6720</p>
+        <p class="text-sm mb-2"><i class="ph ph-phone mr-2"></i>+234 816 550 1816</p>
+        <p class="text-sm mb-2"><i class="ph ph-envelope-simple mr-2"></i>beeglobalexplore@gmail.com</p>
+        <p class="text-sm"><i class="ph ph-instagram-logo mr-2"></i>@Beeglobalexplore</p>
+      </div>
+    </div>
+    <p class="text-xs text-paper/40 pt-8 text-center" id="copyright"></p>
+  </div>
+</footer>
+
+<a id="waFloat" href="#" target="_blank" rel="noopener" class="wa-float" aria-label="Chat on WhatsApp">
+  <span class="wa-pulse"></span>
+  <i class="ph ph-whatsapp-logo relative"></i>
+</a>
+
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

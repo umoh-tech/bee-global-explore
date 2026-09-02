@@ -1,0 +1,9 @@
+{
+  "name": "bee-global-explore-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Bee Global Explore — public website with Supabase-backed form submissions",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.4"
+  }
+}

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flight Reservation | Bee Global Explore</title>
+<meta name="description" content="Request a flight quote from Bee Global Explore — tell us your route, dates, and passengers, and we'll find the best fares.">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="assets/js/tw-config.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/main.css">
+
+</head>
+<body class="font-body text-navy antialiased" data-page="flights" data-wa-msg="Hello Bee Global Explore, I'd like to request a flight quote.">
+
+<header class="fixed top-0 inset-x-0 z-50 bg-paper/90 backdrop-blur border-b border-navy/10">
+  <div class="max-w-7xl mx-auto px-5 md:px-8 flex items-center justify-between h-18 py-3">
+    <a href="index.html" class="flex items-center gap-3">
+      <span class="hex-sm bg-navy text-honey flex items-center justify-center">
+        <i class="ph ph-airplane-tilt text-lg"></i>
+      </span>
+      <span class="font-display font-semibold text-lg md:text-xl tracking-tight leading-none">
+        BEE GLOBAL<br class="hidden sm:block"><span class="text-honey">·</span> EXPLORE
+      </span>
+    </a>
+
+    <nav class="hidden lg:flex items-center gap-7 font-medium text-sm">
+      <a href="index.html" class="hover:text-honey transition">Home</a>
+      <div class="relative">
+        <button id="servicesTrigger" class="flex items-center gap-1 hover:text-honey transition" aria-expanded="false">
+          Services <i class="ph ph-caret-down text-xs"></i>
+        </button>
+        <div id="servicesPanel" class="hidden absolute top-full left-1/2 -translate-x-1/2 mt-3 w-72 bg-navy rounded-2xl shadow-2xl p-3 grid gap-1">
+          <a href="flights.html" class="flex items-center gap-3 px-4 py-3 hover:bg-navy2 rounded-lg transition">
+          <span class="hex-sm bg-navy2 text-honey flex items-center justify-center flex-shrink-0"><i class="ph ph-airplane-tilt"></i></span>
+          <span class="text-sm font-medium text-paper">Flight Reservation</span>
+        </a><a href="hotels.html" class="flex items-center gap-3 px-4 py-3 hover:bg-navy2 rounded-lg transition">
+          <span class="hex-sm bg-navy2 text-honey flex items-center justify-center flex-shrink-0"><i class="ph ph-buildings"></i></span>
+          <span class="text-sm font-medium text-paper">Hotel Reservation</span>
+        </a><a href="visa.html" class="flex items-center gap-3 px-4 py-3 hover:bg-navy2 rounded-lg transition">
+          <span class="hex-sm bg-navy2 text-honey flex items-center justify-center flex-shrink-0"><i class="ph ph-stamp"></i></span>
+          <span class="text-sm font-medium text-paper">Visa Assistance</span>
+        </a><a href="packages.html" class="flex items-center gap-3 px-4 py-3 hover:bg-navy2 rounded-lg transition">
+          <span class="hex-sm bg-navy2 text-honey flex items-center justify-center flex-shrink-0"><i class="ph ph-island"></i></span>
+          <span class="text-sm font-medium text-paper">Holiday Packages</span>
+        </a><a href="transfers.html" class="flex items-center gap-3 px-4 py-3 hover:bg-navy2 rounded-lg transition">
+          <span class="hex-sm bg-navy2 text-honey flex items-center justify-center flex-shrink-0"><i class="ph ph-car"></i></span>
+          <span class="text-sm font-medium text-paper">Airport Transfers</span>
+        </a><a href="goods.html" class="flex items-center gap-3 px-4 py-3 hover:bg-navy2 rounded-lg transition">
+          <span class="hex-sm bg-navy2 text-honey flex items-center justify-center flex-shrink-0"><i class="ph ph-package"></i></span>
+          <span class="text-sm font-medium text-paper">Goods Delivery</span>
+        </a><a href="passport.html" class="flex items-center gap-3 px-4 py-3 hover:bg-navy2 rounded-lg transition">
+          <span class="hex-sm bg-navy2 text-honey flex items-center justify-center flex-shrink-0"><i class="ph ph-identification-card"></i></span>
+          <span class="text-sm font-medium text-paper">Passport Assistance</span>
+        </a><a href="school.html" class="flex items-center gap-3 px-4 py-3 hover:bg-navy2 rounded-lg transition">
+          <span class="hex-sm bg-navy2 text-honey flex items-center justify-center flex-shrink-0"><i class="ph ph-graduation-cap"></i></span>
+          <span class="text-sm font-medium text-paper">School Services & IELTS</span>
+        </a>
+        </div>
+      </div>
+      <a href="packages.html" class="hover:text-honey transition">Packages</a>
+      <a href="enquiry.html" class="hover:text-honey transition">Enquiry</a>
+    </nav>
+
+    <div class="hidden lg:flex items-center gap-4">
+      <a href="tel:+2349160026720" class="text-sm font-mono text-navy/70 hover:text-honey">
+        <i class="ph ph-phone mr-1"></i>+234 916 002 6720
+      </a>
+      <a href="enquiry.html" class="btn-honey px-5 py-2.5 rounded-full text-sm font-semibold shadow-sm hover:shadow-md transition">
+        Get a Quote
+      </a>
+    </div>
+
+    <button id="menuBtn" class="lg:hidden text-2xl" aria-label="Open menu" aria-expanded="false">
+      <i class="ph ph-list"></i>
+    </button>
+  </div>
+
+  <div id="mobileMenu" class="lg:hidden hidden border-t border-navy/10 bg-paper max-h-[80vh] overflow-y-auto">
+    <div class="px-5 py-4 flex flex-col gap-3 font-medium">
+      <a href="index.html" class="mobile-link">Home</a>
+      <p class="font-mono text-xs tracking-widest text-navy/40 mt-2">SERVICES</p>
+      <a href="flights.html" class="mobile-link flex items-center gap-2 pl-4 text-sm text-navy/80"><i class="ph ph-airplane-tilt"></i>Flight Reservation</a><a href="hotels.html" class="mobile-link flex items-center gap-2 pl-4 text-sm text-navy/80"><i class="ph ph-buildings"></i>Hotel Reservation</a><a href="visa.html" class="mobile-link flex items-center gap-2 pl-4 text-sm text-navy/80"><i class="ph ph-stamp"></i>Visa Assistance</a><a href="packages.html" class="mobile-link flex items-center gap-2 pl-4 text-sm text-navy/80"><i class="ph ph-island"></i>Holiday Packages</a><a href="transfers.html" class="mobile-link flex items-center gap-2 pl-4 text-sm text-navy/80"><i class="ph ph-car"></i>Airport Transfers</a><a href="goods.html" class="mobile-link flex items-center gap-2 pl-4 text-sm text-navy/80"><i class="ph ph-package"></i>Goods Delivery</a><a href="passport.html" class="mobile-link flex items-center gap-2 pl-4 text-sm text-navy/80"><i class="ph ph-identification-card"></i>Passport Assistance</a><a href="school.html" class="mobile-link flex items-center gap-2 pl-4 text-sm text-navy/80"><i class="ph ph-graduation-cap"></i>School Services & IELTS</a>
+      <a href="packages.html" class="mobile-link mt-2">Holiday Packages</a>
+      <a href="enquiry.html" class="mobile-link">General Enquiry</a>
+      <a href="enquiry.html" class="btn-honey px-5 py-3 rounded-full text-sm font-semibold text-center mt-3">Get a Quote</a>
+    </div>
+  </div>
+</header>
+
+<section class="page-banner text-paper pt-32 md:pt-40 pb-16 md:pb-20">
+  <div class="max-w-7xl mx-auto px-5 md:px-8 relative reveal">
+    <div class="flex items-center gap-4 mb-5">
+      <span class="hex bg-honey text-navy"><i class="ph ph-airplane-tilt text-2xl"></i></span>
+      <p class="font-mono text-xs tracking-[0.25em] text-honey uppercase">Flight Reservation</p>
+    </div>
+    <h1 class="font-display font-semibold text-4xl md:text-5xl leading-tight mb-4 max-w-2xl">Request a Flight Quote</h1>
+    <p class="text-paper/70 text-lg max-w-2xl leading-relaxed">Tell us your route and dates — our team searches and confirms the best available fares for you. This is a request, not an instant online booking.</p>
+  </div>
+</section>
+
+<section class="py-16 md:py-24">
+  <div class="max-w-3xl mx-auto px-5 md:px-8">
+    <div class="note-box mb-8 reveal"><i class="ph ph-info mr-1"></i> We compare fares across airlines and get back to you with options and pricing — usually within a few hours.</div>
+
+    <form id="flightForm" class="bg-navy rounded-2xl p-6 md:p-9 ticket-perf reveal" novalidate>
+      <div class="mb-6">
+        <label class="field-label">Trip Type</label>
+        <div class="flex gap-3">
+          <label class="pill-option flex-1 flex items-center gap-2 !p-3">
+            <input type="radio" name="tripType" value="One-way" required data-group-label="Trip Type" checked> One-way
+          </label>
+          <label class="pill-option flex-1 flex items-center gap-2 !p-3">
+            <input type="radio" name="tripType" value="Round-trip" data-group-label="Trip Type"> Round-trip
+          </label>
+        </div>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-5 mb-5">
+        <div>
+          <label for="from" class="field-label">Departure City</label>
+          <input id="from" name="from" type="text" required class="field-input" placeholder="e.g. Lagos">
+          <p class="field-err">Please enter your departure city.</p>
+        </div>
+        <div>
+          <label for="to" class="field-label">Destination City</label>
+          <input id="to" name="to" type="text" required class="field-input" placeholder="e.g. London">
+          <p class="field-err">Please enter your destination city.</p>
+        </div>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-5 mb-5">
+        <div>
+          <label for="departDate" class="field-label">Departure Date</label>
+          <input id="departDate" name="departDate" type="date" required class="field-input">
+          <p class="field-err">Please choose a departure date.</p>
+        </div>
+        <div id="returnDateWrap" class="hidden">
+          <label for="returnDate" class="field-label">Return Date</label>
+          <input id="returnDate" name="returnDate" type="date" class="field-input">
+          <p class="field-err">Please choose a return date.</p>
+        </div>
+      </div>
+
+      <div class="grid sm:grid-cols-3 gap-5 mb-5">
+        <div>
+          <label for="adults" class="field-label">Adults</label>
+          <input id="adults" name="adults" type="number" min="1" value="1" required class="field-input">
+        </div>
+        <div>
+          <label for="children" class="field-label">Children</label>
+          <input id="children" name="children" type="number" min="0" value="0" class="field-input">
+        </div>
+        <div>
+          <label for="cabinClass" class="field-label">Cabin Class</label>
+          <select id="cabinClass" name="cabinClass" required class="field-input">
+            <option value="" disabled selected>Select class</option>
+            <option>Economy</option>
+            <option>Premium Economy</option>
+            <option>Business</option>
+            <option>First</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-5 mb-5">
+        <div>
+          <label for="fullName" class="field-label">Full Name</label>
+          <input id="fullName" name="fullName" type="text" required class="field-input">
+          <p class="field-err">Please enter your name.</p>
+        </div>
+        <div>
+          <label for="phone" class="field-label">Phone / WhatsApp</label>
+          <input id="phone" name="phone" type="tel" required class="field-input" placeholder="+234...">
+          <p class="field-err">Please enter a valid phone number.</p>
+        </div>
+      </div>
+
+      <div class="mb-5">
+        <label for="email" class="field-label">Email</label>
+        <input id="email" name="email" type="email" required class="field-input">
+        <p class="field-err">Please enter a valid email address.</p>
+      </div>
+
+      <div class="mb-7">
+        <label for="notes" class="field-label">Additional Notes</label>
+        <textarea id="notes" name="notes" rows="3" class="field-input resize-none" placeholder="Preferred airline, budget, flexible dates, etc."></textarea>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-4">
+        <button type="submit" class="btn-honey px-8 py-3.5 rounded-full font-semibold shadow-md hover:shadow-lg transition">Send Flight Request</button>
+        <a id="flightWaBtn" href="https://wa.me/2349160026720" target="_blank" rel="noopener"
+          class="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full font-semibold border-2 border-paper/30 hover:border-honey hover:text-honey transition">
+          <i class="ph ph-whatsapp-logo"></i> Continue on WhatsApp
+        </a>
+      </div>
+
+      <div id="flightSuccess" class="hidden mt-6 bg-teal/20 border border-teal text-paper rounded-lg px-5 py-4">
+        <p class="font-semibold mb-1"><i class="ph ph-check-circle mr-1"></i> Request ready to send</p>
+        <p class="text-paper/80 text-sm">Your email app will open with the details filled in — just hit send. You can also continue directly on WhatsApp above.</p>
+      </div>
+    </form>
+  </div>
+</section>
+
+<footer class="bg-ink text-paper/70 pt-16 pb-8">
+  <div class="max-w-7xl mx-auto px-5 md:px-8">
+    <div class="grid md:grid-cols-4 gap-10 pb-10 border-b border-paper/10">
+      <div>
+        <div class="flex items-center gap-3 mb-4">
+          <span class="hex-sm bg-navy2 text-honey flex items-center justify-center"><i class="ph ph-airplane-tilt"></i></span>
+          <span class="font-display font-semibold text-lg text-paper">Bee Global Explore</span>
+        </div>
+        <p class="leading-relaxed">Make Your Travel Dream a Reality.</p>
+      </div>
+      <div>
+        <p class="font-mono text-xs tracking-widest text-honey mb-4">SERVICES</p>
+        <ul class="space-y-2 text-sm">
+          <li><a href="flights.html" class="hover:text-honey">Flight Reservation</a></li>
+          <li><a href="hotels.html" class="hover:text-honey">Hotel Reservation</a></li>
+          <li><a href="visa.html" class="hover:text-honey">Visa Assistance</a></li>
+          <li><a href="packages.html" class="hover:text-honey">Holiday Packages</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="font-mono text-xs tracking-widest text-honey mb-4">MORE SERVICES</p>
+        <ul class="space-y-2 text-sm">
+          <li><a href="transfers.html" class="hover:text-honey">Airport Transfers</a></li>
+          <li><a href="goods.html" class="hover:text-honey">Goods Delivery</a></li>
+          <li><a href="passport.html" class="hover:text-honey">Passport Assistance</a></li>
+          <li><a href="school.html" class="hover:text-honey">School Services &amp; IELTS</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="font-mono text-xs tracking-widest text-honey mb-4">GET IN TOUCH</p>
+        <p class="text-sm mb-2"><i class="ph ph-phone mr-2"></i>+234 916 002 6720</p>
+        <p class="text-sm mb-2"><i class="ph ph-phone mr-2"></i>+234 816 550 1816</p>
+        <p class="text-sm mb-2"><i class="ph ph-envelope-simple mr-2"></i>beeglobalexplore@gmail.com</p>
+        <p class="text-sm"><i class="ph ph-instagram-logo mr-2"></i>@Beeglobalexplore</p>
+      </div>
+    </div>
+    <p class="text-xs text-paper/40 pt-8 text-center" id="copyright"></p>
+  </div>
+</footer>
+
+<a id="waFloat" href="#" target="_blank" rel="noopener" class="wa-float" aria-label="Chat on WhatsApp">
+  <span class="wa-pulse"></span>
+  <i class="ph ph-whatsapp-logo relative"></i>
+</a>
+
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

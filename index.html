@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home | Bee Global Explore</title>
+<meta name="description" content="Bee Global Explore helps make your travel experience simpler, smoother, and stress-free — flights, hotels, visas, transfers, tours, and more.">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="assets/js/tw-config.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/main.css">
+
+</head>
+<body class="font-body text-navy antialiased" data-page="home" data-wa-msg="Hello Bee Global Explore, I'm interested in your travel services.">
+
+<header class="fixed top-0 inset-x-0 z-50 bg-paper/90 backdrop-blur border-b border-navy/10">
+  <div class="max-w-7xl mx-auto px-5 md:px-8 flex items-center justify-between h-18 py-3">
+    <a href="index.html" class="flex items-center gap-3">
+      <span class="hex-sm bg-navy text-honey flex items-center justify-center">
+        <i class="ph ph-airplane-tilt text-lg"></i>
+      </span>
+      <span class="font-display font-semibold text-lg md:text-xl tracking-tight leading-none">
+        BEE GLOBAL<br class="hidden sm:block"><span class="text-honey">·</span> EXPLORE
+      </span>
+    </a>
+
+    <nav class="hidden lg:flex items-center gap-7 font-medium text-sm">
+      <a href="index.html" class="text-honey" aria-current="page">Home</a>
+      <div class="relative">
+        <button id="servicesTrigger" class="flex items-center gap-1 hover:text-honey transition" aria-expanded="false">
+          Services <i class="ph ph-caret-down text-xs"></i>
+        </button>
+        <div id="servicesPanel" class="hidden absolute top-full left-1/2 -translate-x-1/2 mt-3 w-72 bg-navy rounded-2xl shadow-2xl p-3 grid gap-1">
+          <a href="flights.html" class="flex items-center gap-3 px-4 py-3 hover:bg-navy2 rounded-lg transition">
+          <span class="hex-sm bg-navy2 text-honey flex items-center justify-center flex-shrink-0"><i class="ph ph-airplane-tilt"></i></span>
+          <span class="text-sm font-medium text-paper">Flight Reservation</span>
+        </a><a href="hotels.html" class="flex items-center gap-3 px-4 py-3 hover:bg-navy2 rounded-lg transition">
+          <span class="hex-sm bg-navy2 text-honey flex items-center justify-center flex-shrink-0"><i class="ph ph-buildings"></i></span>
+          <span class="text-sm font-medium text-paper">Hotel Reservation</span>
+        </a><a href="visa.html" class="flex items-center gap-3 px-4 py-3 hover:bg-navy2 rounded-lg transition">
+          <span class="hex-sm bg-navy2 text-honey flex items-center justify-center flex-shrink-0"><i class="ph ph-stamp"></i></span>
+          <span class="text-sm font-medium text-paper">Visa Assistance</span>
+        </a><a href="packages.html" class="flex items-center gap-3 px-4 py-3 hover:bg-navy2 rounded-lg transition">
+          <span class="hex-sm bg-navy2 text-honey flex items-center justify-center flex-shrink-0"><i class="ph ph-island"></i></span>
+          <span class="text-sm font-medium text-paper">Holiday Packages</span>
+        </a><a href="transfers.html" class="flex items-center gap-3 px-4 py-3 hover:bg-navy2 rounded-lg transition">
+          <span class="hex-sm bg-navy2 text-honey flex items-center justify-center flex-shrink-0"><i class="ph ph-car"></i></span>
+          <span class="text-sm font-medium text-paper">Airport Transfers</span>
+        </a><a href="goods.html" class="flex items-center gap-3 px-4 py-3 hover:bg-navy2 rounded-lg transition">
+          <span class="hex-sm bg-navy2 text-honey flex items-center justify-center flex-shrink-0"><i class="ph ph-package"></i></span>
+          <span class="text-sm font-medium text-paper">Goods Delivery</span>
+        </a><a href="passport.html" class="flex items-center gap-3 px-4 py-3 hover:bg-navy2 rounded-lg transition">
+          <span class="hex-sm bg-navy2 text-honey flex items-center justify-center flex-shrink-0"><i class="ph ph-identification-card"></i></span>
+          <span class="text-sm font-medium text-paper">Passport Assistance</span>
+        </a><a href="school.html" class="flex items-center gap-3 px-4 py-3 hover:bg-navy2 rounded-lg transition">
+          <span class="hex-sm bg-navy2 text-honey flex items-center justify-center flex-shrink-0"><i class="ph ph-graduation-cap"></i></span>
+          <span class="text-sm font-medium text-paper">School Services & IELTS</span>
+        </a>
+        </div>
+      </div>
+      <a href="packages.html" class="hover:text-honey transition">Packages</a>
+      <a href="enquiry.html" class="hover:text-honey transition">Enquiry</a>
+    </nav>
+
+    <div class="hidden lg:flex items-center gap-4">
+      <a href="tel:+2349160026720" class="text-sm font-mono text-navy/70 hover:text-honey">
+        <i class="ph ph-phone mr-1"></i>+234 916 002 6720
+      </a>
+      <a href="enquiry.html" class="btn-honey px-5 py-2.5 rounded-full text-sm font-semibold shadow-sm hover:shadow-md transition">
+        Get a Quote
+      </a>
+    </div>
+
+    <button id="menuBtn" class="lg:hidden text-2xl" aria-label="Open menu" aria-expanded="false">
+      <i class="ph ph-list"></i>
+    </button>
+  </div>
+
+  <div id="mobileMenu" class="lg:hidden hidden border-t border-navy/10 bg-paper max-h-[80vh] overflow-y-auto">
+    <div class="px-5 py-4 flex flex-col gap-3 font-medium">
+      <a href="index.html" class="mobile-link">Home</a>
+      <p class="font-mono text-xs tracking-widest text-navy/40 mt-2">SERVICES</p>
+      <a href="flights.html" class="mobile-link flex items-center gap-2 pl-4 text-sm text-navy/80"><i class="ph ph-airplane-tilt"></i>Flight Reservation</a><a href="hotels.html" class="mobile-link flex items-center gap-2 pl-4 text-sm text-navy/80"><i class="ph ph-buildings"></i>Hotel Reservation</a><a href="visa.html" class="mobile-link flex items-center gap-2 pl-4 text-sm text-navy/80"><i class="ph ph-stamp"></i>Visa Assistance</a><a href="packages.html" class="mobile-link flex items-center gap-2 pl-4 text-sm text-navy/80"><i class="ph ph-island"></i>Holiday Packages</a><a href="transfers.html" class="mobile-link flex items-center gap-2 pl-4 text-sm text-navy/80"><i class="ph ph-car"></i>Airport Transfers</a><a href="goods.html" class="mobile-link flex items-center gap-2 pl-4 text-sm text-navy/80"><i class="ph ph-package"></i>Goods Delivery</a><a href="passport.html" class="mobile-link flex items-center gap-2 pl-4 text-sm text-navy/80"><i class="ph ph-identification-card"></i>Passport Assistance</a><a href="school.html" class="mobile-link flex items-center gap-2 pl-4 text-sm text-navy/80"><i class="ph ph-graduation-cap"></i>School Services & IELTS</a>
+      <a href="packages.html" class="mobile-link mt-2">Holiday Packages</a>
+      <a href="enquiry.html" class="mobile-link">General Enquiry</a>
+      <a href="enquiry.html" class="btn-honey px-5 py-3 rounded-full text-sm font-semibold text-center mt-3">Get a Quote</a>
+    </div>
+  </div>
+</header>
+
+
+<section class="relative bg-navy text-paper pt-32 md:pt-40 pb-16 md:pb-20 overflow-hidden">
+  <div class="pointer-events-none absolute inset-0 opacity-[0.06]" style="background-image: radial-gradient(circle at 15% 20%, #E8A33D 0, transparent 40%), radial-gradient(circle at 85% 75%, #3F7C74 0, transparent 45%);"></div>
+
+  <div class="max-w-7xl mx-auto px-5 md:px-8 relative">
+    <div class="grid lg:grid-cols-5 gap-0 rounded-2xl overflow-hidden shadow-2xl reveal">
+      <div class="lg:col-span-3 bg-navy2 p-8 md:p-14 relative">
+        <p class="font-mono text-xs tracking-[0.25em] text-honey uppercase mb-6">Boarding Pass · Your Journey</p>
+        <h1 class="font-display font-semibold text-4xl sm:text-5xl md:text-6xl leading-[1.05] mb-6">
+          Make Your Travel Dream a Reality
+        </h1>
+        <p class="text-honeylight font-medium text-lg mb-4">Your journey starts here.</p>
+        <p class="text-paper/80 text-base md:text-lg leading-relaxed max-w-xl mb-8">
+          From flight and hotel reservations to visa assistance, airport transfers, school services, and holiday packages — Bee Global Explore helps make your travel experience simpler, smoother, and stress-free.
+        </p>
+
+        <form id="heroSearchForm" class="flex flex-col sm:flex-row gap-3 mb-8 max-w-xl">
+          <div class="relative flex-1">
+            <i class="ph ph-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-paper/40"></i>
+            <input id="heroSearchInput" type="text" placeholder="Where to? e.g. Dubai, Visa, Flight to London"
+              class="w-full bg-navy border border-paper/15 rounded-full pl-11 pr-4 py-3.5 text-paper placeholder-paper/35 focus:outline-none focus:ring-2 focus:ring-honey">
+          </div>
+          <button type="submit" class="btn-honey px-7 py-3.5 rounded-full font-semibold shadow-md hover:shadow-lg transition whitespace-nowrap">
+            Search <i class="ph ph-arrow-right ml-1"></i>
+          </button>
+        </form>
+
+        <div class="flex flex-wrap gap-4">
+          <a href="enquiry.html" class="btn-honey px-7 py-3.5 rounded-full font-semibold shadow-md hover:shadow-lg transition">
+            Plan My Trip <i class="ph ph-arrow-up-right ml-1"></i>
+          </a>
+          <a href="https://wa.me/2349160026720?text=Hello%20Bee%20Global%20Explore%2C%20I%27m%20interested%20in%20your%20travel%20services."
+            target="_blank" rel="noopener"
+            class="px-7 py-3.5 rounded-full font-semibold border-2 border-paper/40 hover:border-honey hover:text-honey transition">
+            <i class="ph ph-whatsapp-logo mr-1"></i> Contact Us
+          </a>
+        </div>
+      </div>
+
+      <div class="lg:col-span-2 bg-navy p-8 md:p-10 ticket-perf-left flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between font-mono text-xs text-paper/60 mb-8">
+            <span>PASSENGER</span><span>ANY / ALL</span>
+          </div>
+          <div class="flex items-center justify-between mb-2">
+            <div>
+              <p class="font-mono text-xs text-paper/50 mb-1">FROM</p>
+              <p class="font-display text-3xl font-semibold">HOME</p>
+            </div>
+            <div class="flex-1 route-track mx-4 mt-6">
+              <span class="route-plane"><i class="ph ph-airplane-tilt"></i></span>
+            </div>
+            <div class="text-right">
+              <p class="font-mono text-xs text-paper/50 mb-1">TO</p>
+              <p class="font-display text-3xl font-semibold">ANYWHERE</p>
+            </div>
+          </div>
+          <div class="grid grid-cols-3 gap-4 mt-8 pt-6 border-t border-dashed border-paper/25 font-mono text-xs">
+            <div><p class="text-paper/50 mb-1">GATE</p><p class="text-honey font-semibold">EXPLORE</p></div>
+            <div><p class="text-paper/50 mb-1">SEAT</p><p class="text-honey font-semibold">YOURS</p></div>
+            <div><p class="text-paper/50 mb-1">STATUS</p><p class="text-honey font-semibold">CONFIRMED</p></div>
+          </div>
+        </div>
+        <div class="barcode mt-10 flex items-end h-10" aria-hidden="true"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Quick services -->
+<section class="py-20 md:py-24">
+  <div class="max-w-7xl mx-auto px-5 md:px-8">
+    <div class="max-w-2xl mb-12 reveal">
+      <p class="font-mono text-xs tracking-[0.25em] text-teal uppercase mb-3">Quick Access</p>
+      <h2 class="font-display font-semibold text-3xl md:text-4xl leading-tight">Everything You Need, One Place</h2>
+    </div>
+    <div id="quickServices" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 reveal"></div>
+  </div>
+</section>
+
+<!-- Featured packages -->
+<section class="py-20 md:py-24 bg-navy text-paper">
+  <div class="max-w-7xl mx-auto px-5 md:px-8">
+    <div class="flex flex-wrap items-end justify-between gap-6 mb-12 reveal">
+      <div class="max-w-xl">
+        <p class="font-mono text-xs tracking-[0.25em] text-honey uppercase mb-3">Featured Packages</p>
+        <h2 class="font-display font-semibold text-3xl md:text-4xl leading-tight">Discover More. Travel Further.</h2>
+      </div>
+      <a href="packages.html" class="text-sm font-semibold text-honey hover:text-honeylight whitespace-nowrap">View All Packages <i class="ph ph-arrow-right"></i></a>
+    </div>
+    <div id="featuredPackages" class="grid md:grid-cols-3 gap-6 reveal"></div>
+  </div>
+</section>
+
+<!-- Why choose us -->
+<section class="py-20 md:py-24">
+  <div class="max-w-7xl mx-auto px-5 md:px-8">
+    <div class="max-w-2xl mb-14 reveal">
+      <p class="font-mono text-xs tracking-[0.25em] text-teal uppercase mb-3">Why Choose Bee Global Explore?</p>
+      <h2 class="font-display font-semibold text-3xl md:text-5xl leading-tight">Travel With Confidence</h2>
+    </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div class="reveal">
+        <div class="stamp w-16 h-16 flex items-center justify-center mb-5"><i class="ph ph-briefcase text-xl"></i></div>
+        <h3 class="font-display font-semibold text-xl mb-2">Professional Assistance</h3>
+        <p class="text-navy/70 leading-relaxed">We help you navigate the different steps involved in planning your trip.</p>
+      </div>
+      <div class="reveal">
+        <div class="stamp w-16 h-16 flex items-center justify-center mb-5"><i class="ph ph-stack text-xl"></i></div>
+        <h3 class="font-display font-semibold text-xl mb-2">Convenient Services</h3>
+        <p class="text-navy/70 leading-relaxed">From reservations to airport transfers and documentation assistance, we bring multiple travel services together in one place.</p>
+      </div>
+      <div class="reveal">
+        <div class="stamp w-16 h-16 flex items-center justify-center mb-5"><i class="ph ph-hand-heart text-xl"></i></div>
+        <h3 class="font-display font-semibold text-xl mb-2">Personalized Support</h3>
+        <p class="text-navy/70 leading-relaxed">Every traveller has different needs. We take the time to understand your plans and provide suitable assistance.</p>
+      </div>
+      <div class="reveal">
+        <div class="stamp w-16 h-16 flex items-center justify-center mb-5"><i class="ph ph-check-circle text-xl"></i></div>
+        <h3 class="font-display font-semibold text-xl mb-2">Travel Made Simple</h3>
+        <p class="text-navy/70 leading-relaxed">We handle the details so you can spend less time worrying about your trip and more time looking forward to it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section class="py-20 md:py-24 bg-papershade">
+  <div class="max-w-7xl mx-auto px-5 md:px-8">
+    <div class="max-w-2xl mb-14 reveal">
+      <p class="font-mono text-xs tracking-[0.25em] text-teal uppercase mb-3">Customer Testimonials</p>
+      <h2 class="font-display font-semibold text-3xl md:text-4xl leading-tight">What Travellers Say</h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="reveal bg-white rounded-2xl p-7 shadow-sm border border-navy/5">
+        <div class="text-honey mb-4 text-lg"><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i></div>
+        <p class="text-navy/75 leading-relaxed mb-5">"They handled my visa documentation from start to finish and kept me updated the whole way. Made a stressful process feel simple."</p>
+        <p class="font-display font-semibold">Sample Customer</p>
+        <p class="text-xs text-navy/50 font-mono">Visa Assistance</p>
+      </div>
+      <div class="reveal bg-white rounded-2xl p-7 shadow-sm border border-navy/5">
+        <div class="text-honey mb-4 text-lg"><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i></div>
+        <p class="text-navy/75 leading-relaxed mb-5">"Booked our family holiday package and everything from flights to the airport transfer was well organized. Would use them again."</p>
+        <p class="font-display font-semibold">Sample Customer</p>
+        <p class="text-xs text-navy/50 font-mono">Holiday Package</p>
+      </div>
+      <div class="reveal bg-white rounded-2xl p-7 shadow-sm border border-navy/5">
+        <div class="text-honey mb-4 text-lg"><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i></div>
+        <p class="text-navy/75 leading-relaxed mb-5">"Quick responses on WhatsApp and clear guidance on what documents I needed for my school application. Very reassuring."</p>
+        <p class="font-display font-semibold">Sample Customer</p>
+        <p class="text-xs text-navy/50 font-mono">School Services</p>
+      </div>
+    </div>
+    <p class="text-xs text-navy/40 text-center mt-8 reveal">Sample testimonials shown for illustration — replace with quotes from your own customers.</p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="py-20 md:py-28 bg-navy text-paper text-center">
+  <div class="max-w-3xl mx-auto px-5 md:px-8 reveal">
+    <h2 class="font-display font-semibold text-3xl md:text-5xl leading-tight mb-6">Ready to Make Your Travel Dream a Reality?</h2>
+    <p class="text-paper/70 text-lg leading-relaxed mb-9 max-w-2xl mx-auto">
+      Tell us where you're going, and let's help you get there — flights, hotels, visas, transfers, and more, all in one place.
+    </p>
+    <a href="enquiry.html" class="btn-honey inline-flex items-center gap-2 px-9 py-4 rounded-full font-semibold shadow-lg hover:shadow-xl transition">
+      Plan My Trip <i class="ph ph-airplane-tilt"></i>
+    </a>
+  </div>
+</section>
+
+<footer class="bg-ink text-paper/70 pt-16 pb-8">
+  <div class="max-w-7xl mx-auto px-5 md:px-8">
+    <div class="grid md:grid-cols-4 gap-10 pb-10 border-b border-paper/10">
+      <div>
+        <div class="flex items-center gap-3 mb-4">
+          <span class="hex-sm bg-navy2 text-honey flex items-center justify-center"><i class="ph ph-airplane-tilt"></i></span>
+          <span class="font-display font-semibold text-lg text-paper">Bee Global Explore</span>
+        </div>
+        <p class="leading-relaxed">Make Your Travel Dream a Reality.</p>
+      </div>
+      <div>
+        <p class="font-mono text-xs tracking-widest text-honey mb-4">SERVICES</p>
+        <ul class="space-y-2 text-sm">
+          <li><a href="flights.html" class="hover:text-honey">Flight Reservation</a></li>
+          <li><a href="hotels.html" class="hover:text-honey">Hotel Reservation</a></li>
+          <li><a href="visa.html" class="hover:text-honey">Visa Assistance</a></li>
+          <li><a href="packages.html" class="hover:text-honey">Holiday Packages</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="font-mono text-xs tracking-widest text-honey mb-4">MORE SERVICES</p>
+        <ul class="space-y-2 text-sm">
+          <li><a href="transfers.html" class="hover:text-honey">Airport Transfers</a></li>
+          <li><a href="goods.html" class="hover:text-honey">Goods Delivery</a></li>
+          <li><a href="passport.html" class="hover:text-honey">Passport Assistance</a></li>
+          <li><a href="school.html" class="hover:text-honey">School Services &amp; IELTS</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="font-mono text-xs tracking-widest text-honey mb-4">GET IN TOUCH</p>
+        <p class="text-sm mb-2"><i class="ph ph-phone mr-2"></i>+234 916 002 6720</p>
+        <p class="text-sm mb-2"><i class="ph ph-phone mr-2"></i>+234 816 550 1816</p>
+        <p class="text-sm mb-2"><i class="ph ph-envelope-simple mr-2"></i>beeglobalexplore@gmail.com</p>
+        <p class="text-sm"><i class="ph ph-instagram-logo mr-2"></i>@Beeglobalexplore</p>
+      </div>
+    </div>
+    <p class="text-xs text-paper/40 pt-8 text-center" id="copyright"></p>
+  </div>
+</footer>
+
+<a id="waFloat" href="#" target="_blank" rel="noopener" class="wa-float" aria-label="Chat on WhatsApp">
+  <span class="wa-pulse"></span>
+  <i class="ph ph-whatsapp-logo relative"></i>
+</a>
+
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
