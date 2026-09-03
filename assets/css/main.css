@@ -29,7 +29,7 @@ body { background-color: var(--paper); }
 
 /* Perforated ticket edge */
 .ticket-perf{
-  background-image: radial-gradient(circle at 0 50%, transparent 9px, var(--paper) 9.5px);
+  background-image: radial-gradient(circle at 0 50%, var(--paper) 9px, transparent 9.5px);
   background-size: 100% 22px;
   background-repeat: repeat-y;
 }
@@ -189,3 +189,66 @@ body { background-color: var(--paper); }
   .reveal{ transition: none; opacity: 1; transform: none; }
   .wa-pulse{ animation: none; display:none; }
 }
+
+/* ============================================================================
+   Fallback color utilities
+   ----------------------------------------------------------------------------
+   Tailwind's CDN script generates bg-navy / text-paper / etc. at runtime in
+   the visitor's browser. If that external script is slow, blocked, or fails
+   to load, those classes silently do nothing — and since the custom form
+   styling above still applies (it's plain CSS), the result is dark input
+   boxes sitting on an unstyled background with invisible light-colored text.
+   These rules duplicate the exact same values as plain CSS so contrast and
+   readability never depend on an external script succeeding.
+   ============================================================================ */
+
+.bg-navy   { background-color: #12213B; }
+.bg-navy2  { background-color: #17294A; }
+.bg-ink    { background-color: #0E1B2E; }
+.bg-honey  { background-color: #E8A33D; }
+.bg-white  { background-color: #FFFFFF; }
+.bg-paper  { background-color: #F8F4EB; }
+.bg-papershade { background-color: #EFE8D8; }
+.bg-paper\/90   { background-color: rgba(248,244,235,.9); }
+.bg-teal\/20    { background-color: rgba(63,124,116,.2); }
+
+.text-navy       { color: #12213B; }
+.text-honey      { color: #E8A33D; }
+.text-honeylight { color: #F4C877; }
+.text-teal       { color: #3F7C74; }
+.text-paper      { color: #F8F4EB; }
+.text-navy\/40 { color: rgba(18,33,59,.4); }
+.text-navy\/50 { color: rgba(18,33,59,.5); }
+.text-navy\/70 { color: rgba(18,33,59,.7); }
+.text-navy\/75 { color: rgba(18,33,59,.75); }
+.text-navy\/80 { color: rgba(18,33,59,.8); }
+.text-paper\/40 { color: rgba(248,244,235,.4); }
+.text-paper\/50 { color: rgba(248,244,235,.5); }
+.text-paper\/60 { color: rgba(248,244,235,.6); }
+.text-paper\/70 { color: rgba(248,244,235,.7); }
+.text-paper\/80 { color: rgba(248,244,235,.8); }
+.text-paper\/85 { color: rgba(248,244,235,.85); }
+
+.border-honey { border-color: #E8A33D; }
+.border-teal  { border-color: #3F7C74; }
+.border-navy\/5  { border-color: rgba(18,33,59,.05); }
+.border-navy\/10 { border-color: rgba(18,33,59,.1); }
+.border-paper\/10 { border-color: rgba(248,244,235,.1); }
+.border-paper\/15 { border-color: rgba(248,244,235,.15); }
+.border-paper\/25 { border-color: rgba(248,244,235,.25); }
+.border-paper\/30 { border-color: rgba(248,244,235,.3); }
+.border-paper\/40 { border-color: rgba(248,244,235,.4); }
+
+/* Tailwind's `.hidden` toggles visibility for the mobile menu, the services
+   dropdown, modals, the return-date field, and every success/error message
+   on every form. If Tailwind's CDN script fails to load, none of that
+   show/hide logic works — elements meant to stay hidden become visible.
+   This one class is critical enough to guarantee outside of Tailwind. */
+.hidden { display: none; }
+
+/* Baseline padding for form/card containers that use the perforated-ticket
+   background pattern, so the decorative edge never collides with real
+   content even if Tailwind's own padding utilities fail to load. Tailwind's
+   p-6 / md:p-9 classes (already used alongside this one) still take over
+   normally once Tailwind loads. */
+.ticket-perf, .ticket-perf-left { padding: 1.5rem; }
