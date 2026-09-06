@@ -177,6 +177,7 @@ body {
    readable here instead of repeating the same invisible-text bug. */
 .modal-card .field label { color: rgba(18,33,59,.55); }
 .modal-card .field input[type="text"],
+.modal-card .field input[type="number"],
 .modal-card .field input:not([type]) { background:#fff; color: var(--navy); }
 
 .modal-actions { display:flex; justify-content:space-between; align-items:center; gap:1rem; margin-top:.5rem; }
