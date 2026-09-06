@@ -522,7 +522,7 @@ async function initHomepage() {
     grid.innerHTML = SERVICES_NAV.map(s => `
       <a href="${s.href}" class="card-hover flex flex-col items-center text-center gap-3 bg-navy2 rounded-2xl p-6 border border-paper/10 hover:border-honey/40 transition">
         <div class="hex"><i class="ph ${s.icon} text-2xl"></i></div>
-        <span class="font-medium text-sm">${s.label}</span>
+        <span class="font-medium text-sm text-paper">${s.label}</span>
       </a>
     `).join('');
   }
@@ -534,9 +534,9 @@ async function initHomepage() {
       <div class="pkg-card bg-white rounded-2xl overflow-hidden shadow-sm border border-navy/5">
         <div class="bg-navy h-2"></div>
         <div class="p-6">
-          <h3 class="font-display font-semibold text-xl mb-2">${p.name}</h3>
+          <h3 class="font-display font-semibold text-xl mb-2 text-navy">${p.name}</h3>
           <div class="flex flex-wrap gap-2 mb-4">
-            ${p.includes.map(i => `<span class="text-xs font-mono bg-papershade px-2 py-1 rounded-full">${i}</span>`).join('')}
+            ${p.includes.map(i => `<span class="text-xs font-mono bg-papershade px-2 py-1 rounded-full text-navy">${i}</span>`).join('')}
           </div>
           <p class="text-navy/70 text-sm leading-relaxed mb-5">${p.blurb}</p>
           <div class="flex items-center justify-between">
@@ -572,9 +572,9 @@ async function initPackagesPage() {
     <div id="${p.id}" class="pkg-card bg-white rounded-2xl overflow-hidden shadow-sm border border-navy/5 scroll-mt-28">
       <div class="bg-navy h-2"></div>
       <div class="p-6">
-        <h3 class="font-display font-semibold text-xl mb-2">${p.name}</h3>
+        <h3 class="font-display font-semibold text-xl mb-2 text-navy">${p.name}</h3>
         <div class="flex flex-wrap gap-2 mb-4">
-          ${p.includes.map(i => `<span class="text-xs font-mono bg-papershade px-2 py-1 rounded-full">${i}</span>`).join('')}
+          ${p.includes.map(i => `<span class="text-xs font-mono bg-papershade px-2 py-1 rounded-full text-navy">${i}</span>`).join('')}
         </div>
         <p class="text-navy/70 text-sm leading-relaxed mb-5">${p.blurb}</p>
         <div class="flex items-center justify-between">
