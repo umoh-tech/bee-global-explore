@@ -3,8 +3,8 @@
 // ---- Fill these in from Supabase → Project Settings → API ----
 // The anon key is safe to expose here: Row Level Security only allows the
 // signed-in admin account to read/update this table (see supabase/schema.sql).
-const SUPABASE_URL = 'https://nphkrxnezvlaowbyakuf.supabase.co'; // e.g. https://xxxxxxxx.supabase.co
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5waGtyeG5lenZsYW93Ynlha3VmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODgzNzA5MzUsImV4cCI6MjEwMzk0NjkzNX0.vnanR5oGwwm3KGW4RoEg4bq49UOzkwFUVtjvtgJPAkE';
+const SUPABASE_URL = 'YOUR_SUPABASE_PROJECT_URL'; // e.g. https://xxxxxxxx.supabase.co
+const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
 
 const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
@@ -146,6 +146,10 @@ function renderList(rows) {
     sel.addEventListener('change', () => updateStatus(sel.dataset.id, sel.value));
   });
 
+  qsa('.delete-btn', list).forEach(btn => {
+    btn.addEventListener('click', () => deleteSubmission(btn.dataset.id));
+  });
+
   qsa('.file-chip', list).forEach(chip => {
     chip.addEventListener('click', async (e) => {
       e.preventDefault();
@@ -185,7 +189,10 @@ function renderCard(r) {
           <option value="contacted" ${r.status === 'contacted' ? 'selected' : ''}>Contacted</option>
           <option value="closed" ${r.status === 'closed' ? 'selected' : ''}>Closed</option>
         </select>
-        <span class="sub-date">#${r.id.slice(0, 8)}</span>
+        <div style="display:flex; align-items:center; gap:.6rem;">
+          <span class="sub-date">#${r.id.slice(0, 8)}</span>
+          <button class="delete-btn" data-id="${r.id}"><i class="ph ph-trash"></i> Delete</button>
+        </div>
       </div>
     </div>
   `;
@@ -202,6 +209,19 @@ async function updateStatus(id, status) {
   const sel = qs(`.status-select[data-id="${id}"]`);
   if (sel) sel.className = `status-select status-${status}`;
   renderStats(allSubmissions);
+}
+
+async function deleteSubmission(id) {
+  if (!confirm('Delete this submission permanently? This cannot be undone.')) return;
+  const { error } = await sb.from('submissions').delete().eq('id', id);
+  if (error) {
+    alert('Could not delete: ' + error.message);
+    return;
+  }
+  allSubmissions = allSubmissions.filter(r => r.id !== id);
+  populateServiceFilter(allSubmissions);
+  renderStats(allSubmissions);
+  applyFilters();
 }
 
 async function openFile(path) {
@@ -225,11 +245,166 @@ function escapeHtml(str) {
   return div.innerHTML;
 }
 
+/* ---------- Tabs ---------- */
+
+function initTabs() {
+  qsa('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      qsa('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      qsa('.tab-panel').forEach(p => p.classList.add('hidden'));
+      qs(`#${btn.dataset.tab}Tab`).classList.remove('hidden');
+      if (btn.dataset.tab === 'packages') loadPackages();
+    });
+  });
+}
+
+/* ---------- Packages management ---------- */
+
+let allPackages = [];
+
+async function loadPackages() {
+  const list = qs('#packagesList');
+  list.innerHTML = '<div class="spinner"></div>';
+
+  const { data, error } = await sb
+    .from('packages')
+    .select('*')
+    .order('sort_order', { ascending: true });
+
+  if (error) {
+    list.innerHTML = `<div class="empty-state">Couldn't load packages: ${escapeHtml(error.message)}</div>`;
+    return;
+  }
+
+  allPackages = data || [];
+  renderPackagesList();
+}
+
+function renderPackagesList() {
+  const list = qs('#packagesList');
+  if (!allPackages.length) {
+    list.innerHTML = '<div class="empty-state"><i class="ph ph-island" style="font-size:2rem;"></i><p>No packages yet. Add your first one.</p></div>';
+    return;
+  }
+
+  list.innerHTML = allPackages.map(p => `
+    <div class="pkg-admin-card ${p.is_active ? '' : 'inactive'}">
+      <div>
+        <span class="pkg-admin-name">${escapeHtml(p.name)}</span>
+        ${p.is_active ? '' : '<span class="pill-inactive">Hidden</span>'}
+        <div class="pkg-admin-meta">\u20a6${Number(p.from_price).toLocaleString('en-NG')} \u00b7 order ${p.sort_order}</div>
+      </div>
+      <div class="pkg-admin-actions">
+        <button data-action="toggle" data-id="${p.id}">${p.is_active ? 'Hide' : 'Show'}</button>
+        <button data-action="edit" data-id="${p.id}">Edit</button>
+      </div>
+    </div>
+  `).join('');
+
+  qsa('[data-action="edit"]', list).forEach(btn => {
+    btn.addEventListener('click', () => openPackageForm(allPackages.find(p => p.id === btn.dataset.id)));
+  });
+  qsa('[data-action="toggle"]', list).forEach(btn => {
+    btn.addEventListener('click', () => togglePackageActive(btn.dataset.id));
+  });
+}
+
+async function togglePackageActive(id) {
+  const pkg = allPackages.find(p => p.id === id);
+  if (!pkg) return;
+  const newValue = !pkg.is_active;
+  const { error } = await sb.from('packages').update({ is_active: newValue }).eq('id', id);
+  if (error) { alert('Could not update: ' + error.message); return; }
+  pkg.is_active = newValue;
+  renderPackagesList();
+}
+
+function openPackageForm(pkg) {
+  qs('#packageFormError').classList.add('hidden');
+  qs('#packageFormTitle').textContent = pkg ? 'Edit Package' : 'Add Package';
+  qs('#pkgId').value = pkg?.id || '';
+  qs('#pkgName').value = pkg?.name || '';
+  qs('#pkgPrice').value = pkg?.from_price ?? '';
+  qs('#pkgIncludes').value = (pkg?.includes || []).join(', ');
+  qs('#pkgBlurb').value = pkg?.blurb || '';
+  qs('#pkgItinerary').value = (pkg?.itinerary || []).join('\n');
+  qs('#pkgSortOrder').value = pkg?.sort_order ?? allPackages.length;
+  qs('#pkgActive').checked = pkg ? pkg.is_active : true;
+  qs('#packageDeleteBtn').classList.toggle('hidden', !pkg);
+  qs('#packageModal').classList.add('open');
+}
+
+function closePackageForm() {
+  qs('#packageModal').classList.remove('open');
+}
+
+function initPackageForm() {
+  qs('#addPackageBtn').addEventListener('click', () => openPackageForm(null));
+  qs('#packageModalClose').addEventListener('click', closePackageForm);
+  qs('#packageModal').addEventListener('click', (e) => { if (e.target.id === 'packageModal') closePackageForm(); });
+
+  qs('#packageForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const errorBox = qs('#packageFormError');
+    errorBox.classList.add('hidden');
+
+    const id = qs('#pkgId').value;
+    const payload = {
+      name: qs('#pkgName').value.trim(),
+      from_price: Number(qs('#pkgPrice').value) || 0,
+      includes: qs('#pkgIncludes').value.split(',').map(s => s.trim()).filter(Boolean),
+      blurb: qs('#pkgBlurb').value.trim(),
+      itinerary: qs('#pkgItinerary').value.split('\n').map(s => s.trim()).filter(Boolean),
+      sort_order: Number(qs('#pkgSortOrder').value) || 0,
+      is_active: qs('#pkgActive').checked,
+    };
+
+    if (!payload.name) {
+      errorBox.textContent = 'Package name is required.';
+      errorBox.classList.remove('hidden');
+      return;
+    }
+
+    const saveBtn = qs('#packageSaveBtn');
+    saveBtn.disabled = true;
+    saveBtn.textContent = 'Saving...';
+
+    const { error } = id
+      ? await sb.from('packages').update(payload).eq('id', id)
+      : await sb.from('packages').insert(payload);
+
+    saveBtn.disabled = false;
+    saveBtn.textContent = 'Save Package';
+
+    if (error) {
+      errorBox.textContent = error.message;
+      errorBox.classList.remove('hidden');
+      return;
+    }
+
+    closePackageForm();
+    loadPackages();
+  });
+
+  qs('#packageDeleteBtn').addEventListener('click', async () => {
+    const id = qs('#pkgId').value;
+    if (!id) return;
+    if (!confirm('Delete this package permanently? This cannot be undone.')) return;
+    const { error } = await sb.from('packages').delete().eq('id', id);
+    if (error) { alert('Could not delete: ' + error.message); return; }
+    closePackageForm();
+    loadPackages();
+  });
+}
+
 /* ---------- Boot ---------- */
 
 document.addEventListener('DOMContentLoaded', () => {
   initLoginForm();
   initLogout();
+  initTabs();
+  initPackageForm();
   qs('#searchInput').addEventListener('input', applyFilters);
   qs('#serviceFilter').addEventListener('change', applyFilters);
   qs('#statusFilter').addEventListener('change', applyFilters);

@@ -3,9 +3,42 @@
 const WHATSAPP_NUMBER = '2349160026720';
 const AGENCY_EMAIL = 'beeglobalexplore@gmail.com';
 
+// Used only for reading the public "packages" table (read-only, safe to
+// expose — Row Level Security only allows reading packages marked active).
+// Fill these in with the same values used in admin/assets/js/admin.js.
+const SUPABASE_URL = 'YOUR_SUPABASE_PROJECT_URL';
+const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
+
 /* ---------- Data ---------- */
 
-const PACKAGES = [
+/** Fetches live packages from Supabase; falls back to PACKAGES_FALLBACK below
+ *  if the request fails or the credentials above haven't been filled in yet,
+ *  so the packages page is never empty. */
+async function fetchPackages() {
+  if (!SUPABASE_URL || SUPABASE_URL.startsWith('YOUR_')) return PACKAGES_FALLBACK;
+  try {
+    const res = await fetch(
+      `${SUPABASE_URL}/rest/v1/packages?select=*&is_active=eq.true&order=sort_order.asc`,
+      { headers: { apikey: SUPABASE_ANON_KEY, Authorization: `Bearer ${SUPABASE_ANON_KEY}` } }
+    );
+    if (!res.ok) throw new Error(`Supabase returned ${res.status}`);
+    const data = await res.json();
+    if (!Array.isArray(data) || data.length === 0) throw new Error('No active packages returned');
+    return data.map(p => ({
+      id: p.id,
+      name: p.name,
+      from: Number(p.from_price) || 0,
+      includes: p.includes || [],
+      blurb: p.blurb || '',
+      itinerary: p.itinerary || [],
+    }));
+  } catch (err) {
+    console.error('Could not load live packages, using fallback list:', err);
+    return PACKAGES_FALLBACK;
+  }
+}
+
+const PACKAGES_FALLBACK = [
   {
     id: 'dubai-5day',
     name: 'Dubai 5-Day Getaway',
@@ -439,9 +472,51 @@ function initFileDrop(dropId, inputId, listId) {
   drop.addEventListener('drop', (e) => { input.files = e.dataTransfer.files; render(); });
 }
 
+/* ---------- Homepage hero slider ---------- */
+
+function initHeroSlider() {
+  const section = qs('#heroSlider');
+  const slides = qsa('.hero-slide', section);
+  const dots = qsa('.hero-dot', section);
+  if (!section || !slides.length) return;
+
+  let current = 0;
+  let timer = null;
+
+  function goTo(index) {
+    slides[current]?.classList.remove('active');
+    dots[current]?.classList.remove('active');
+    current = (index + slides.length) % slides.length;
+    slides[current]?.classList.add('active');
+    dots[current]?.classList.add('active');
+  }
+  function next() { goTo(current + 1); }
+  function prev() { goTo(current - 1); }
+  function startAutoplay() { stopAutoplay(); timer = setInterval(next, 5500); }
+  function stopAutoplay() { if (timer) clearInterval(timer); }
+
+  qs('#heroNext', section)?.addEventListener('click', () => { next(); startAutoplay(); });
+  qs('#heroPrev', section)?.addEventListener('click', () => { prev(); startAutoplay(); });
+  dots.forEach((dot, i) => dot.addEventListener('click', () => { goTo(i); startAutoplay(); }));
+
+  section.addEventListener('mouseenter', stopAutoplay);
+  section.addEventListener('mouseleave', startAutoplay);
+
+  let touchStartX = 0;
+  section.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; }, { passive: true });
+  section.addEventListener('touchend', (e) => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) > 40) { dx > 0 ? prev() : next(); startAutoplay(); }
+  }, { passive: true });
+
+  startAutoplay();
+}
+
 /* ---------- Page: Homepage ---------- */
 
-function initHomepage() {
+async function initHomepage() {
+  initHeroSlider();
+
   const grid = qs('#quickServices');
   if (grid) {
     grid.innerHTML = SERVICES_NAV.map(s => `
@@ -454,7 +529,8 @@ function initHomepage() {
 
   const featured = qs('#featuredPackages');
   if (featured) {
-    featured.innerHTML = PACKAGES.slice(0, 3).map(p => `
+    const packages = await fetchPackages();
+    featured.innerHTML = packages.slice(0, 3).map(p => `
       <div class="pkg-card bg-white rounded-2xl overflow-hidden shadow-sm border border-navy/5">
         <div class="bg-navy h-2"></div>
         <div class="p-6">
@@ -486,10 +562,13 @@ function initHomepage() {
 
 /* ---------- Page: Packages ---------- */
 
-function initPackagesPage() {
+async function initPackagesPage() {
   const grid = qs('#packagesGrid');
   if (!grid) return;
-  grid.innerHTML = PACKAGES.map(p => `
+
+  const packages = await fetchPackages();
+
+  grid.innerHTML = packages.map(p => `
     <div id="${p.id}" class="pkg-card bg-white rounded-2xl overflow-hidden shadow-sm border border-navy/5 scroll-mt-28">
       <div class="bg-navy h-2"></div>
       <div class="p-6">
@@ -510,7 +589,7 @@ function initPackagesPage() {
   const modalBody = qs('#pkgModalBody');
   qsa('.viewPkgBtn').forEach(btn => {
     btn.addEventListener('click', () => {
-      const p = PACKAGES.find(x => x.id === btn.dataset.pkg);
+      const p = packages.find(x => x.id === btn.dataset.pkg);
       if (!p) return;
       modalBody.innerHTML = `
         <div class="p-7 md:p-9">

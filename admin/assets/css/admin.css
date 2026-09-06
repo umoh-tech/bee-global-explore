@@ -113,3 +113,75 @@ body {
   width: 28px; height:28px; animation: spin 0.8s linear infinite; margin: 2rem auto;
 }
 @keyframes spin { to { transform: rotate(360deg); } }
+
+.delete-btn {
+  background: transparent; border:1px solid rgba(220,38,38,.35); color:#dc2626;
+  border-radius:.5rem; padding:.4rem .7rem; font-size:.78rem; cursor:pointer;
+}
+.delete-btn:hover { background: rgba(220,38,38,.08); }
+
+/* ---------- Tabs ---------- */
+.tab-bar { display:flex; gap:.5rem; margin-bottom: 1.5rem; border-bottom:1px solid rgba(18,33,59,.1); }
+.tab-btn {
+  background:none; border:none; padding:.75rem 1rem; font-size:.9rem; font-weight:600;
+  color: rgba(18,33,59,.5); cursor:pointer; border-bottom:2px solid transparent; margin-bottom:-1px;
+}
+.tab-btn.active { color: var(--navy); border-bottom-color: var(--honey); }
+.tab-panel.hidden { display:none; }
+
+/* ---------- Packages management ---------- */
+.packages-toolbar { margin-bottom: 1.25rem; }
+.pkg-admin-card {
+  background:#fff; border:1px solid rgba(18,33,59,.08); border-radius:.9rem; padding:1.1rem 1.4rem;
+  margin-bottom:.85rem; display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap;
+}
+.pkg-admin-card.inactive { opacity:.55; }
+.pkg-admin-name { font-weight:600; }
+.pkg-admin-meta { font-size:.78rem; color: rgba(18,33,59,.5); font-family:'IBM Plex Mono',monospace; }
+.pkg-admin-actions { display:flex; gap:.5rem; }
+.pkg-admin-actions button {
+  background:#fff; border:1px solid rgba(18,33,59,.15); border-radius:.5rem; padding:.4rem .75rem;
+  font-size:.8rem; cursor:pointer;
+}
+.pkg-admin-actions button:hover { border-color: var(--honey); }
+.pill-inactive { font-size:.68rem; background: rgba(18,33,59,.08); color: rgba(18,33,59,.5); padding:.2rem .55rem; border-radius:999px; margin-left:.5rem; }
+
+/* ---------- Modal (package form) ---------- */
+.modal-overlay {
+  position:fixed; inset:0; background: rgba(14,27,46,.6); z-index:50;
+  display:flex; align-items:center; justify-content:center; padding:1rem;
+  opacity:0; pointer-events:none; transition: opacity .2s ease;
+}
+.modal-overlay.open { opacity:1; pointer-events:auto; }
+.modal-card {
+  background:#fff; border-radius:1rem; width:100%; max-width:520px; max-height:88vh; overflow-y:auto;
+  padding:1.75rem; transform: translateY(16px); transition: transform .2s ease;
+}
+.modal-overlay.open .modal-card { transform: translateY(0); }
+.modal-card-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:1.25rem; }
+.modal-card-header h2 { font-size:1.15rem; margin:0; }
+.icon-btn { background:none; border:none; font-size:1.2rem; cursor:pointer; color: rgba(18,33,59,.5); }
+.icon-btn:hover { color: var(--navy); }
+
+.field-row { display:flex; gap:1rem; align-items:flex-end; }
+.field-row .field { flex:1; }
+.field-checkbox label { display:flex; align-items:center; gap:.5rem; font-size:.85rem; text-transform:none; letter-spacing:0; color: var(--navy); margin-bottom: .7rem; }
+.field textarea, .field input[type="number"] {
+  width:100%; border:1px solid rgba(18,33,59,.15); border-radius:.5rem; padding:.65rem .85rem; font-size:.9rem;
+  font-family: inherit; color: var(--navy);
+}
+.field textarea:focus, .field input:focus { outline:none; box-shadow: 0 0 0 2px var(--honey); }
+
+/* The modal card has a light background — override the dark-theme .field
+   label/input colors (designed for the navy login card) so they stay
+   readable here instead of repeating the same invisible-text bug. */
+.modal-card .field label { color: rgba(18,33,59,.55); }
+.modal-card .field input[type="text"],
+.modal-card .field input:not([type]) { background:#fff; color: var(--navy); }
+
+.modal-actions { display:flex; justify-content:space-between; align-items:center; gap:1rem; margin-top:.5rem; }
+.btn-danger {
+  background:transparent; border:1px solid rgba(220,38,38,.4); color:#dc2626; border-radius:.5rem;
+  padding:.7rem 1.1rem; font-size:.85rem; cursor:pointer;
+}
+.btn-danger:hover { background: rgba(220,38,38,.08); }
