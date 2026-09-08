@@ -3,8 +3,8 @@
 // ---- Fill these in from Supabase → Project Settings → API ----
 // The anon key is safe to expose here: Row Level Security only allows the
 // signed-in admin account to read/update this table (see supabase/schema.sql).
-const SUPABASE_URL = 'YOUR_SUPABASE_PROJECT_URL'; // e.g. https://xxxxxxxx.supabase.co
-const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
+const SUPABASE_URL = 'https://nphkrxnezvlaowbyakuf.supabase.co'; // e.g. https://xxxxxxxx.supabase.co
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5waGtyeG5lenZsYW93Ynlha3VmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODgzNzA5MzUsImV4cCI6MjEwMzk0NjkzNX0.vnanR5oGwwm3KGW4RoEg4bq49UOzkwFUVtjvtgJPAkE';
 
 const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
