@@ -160,7 +160,8 @@ body {
 .modal-overlay.open .modal-card { transform: translateY(0); }
 .modal-card-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:1.25rem; }
 .modal-card-header h2 { font-size:1.15rem; margin:0; }
-.icon-btn { background:none; border:none; font-size:1.2rem; cursor:pointer; color: rgba(18,33,59,.5); }
+.icon-btn { background:none; border:none; font-size:1.2rem; cursor:pointer; color: rgba(18,33,59,.5);
+  display: inline-flex; align-items: center; justify-content: center; min-width: 2.25rem; min-height: 2.25rem; }
 .icon-btn:hover { color: var(--navy); }
 
 .field-row { display:flex; gap:1rem; align-items:flex-end; }

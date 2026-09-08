@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./*.html', './admin/*.html'],
+  content: ['./*.html', './admin/*.html', './assets/js/*.js', './admin/assets/js/*.js'],
   safelist: [
     // Dynamically-inserted classes (built into strings in main.js/admin.js)
     // that the content scanner can't see, since they never appear literally
