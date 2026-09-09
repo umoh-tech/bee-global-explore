@@ -155,10 +155,10 @@ const COUNTRIES = ['United Kingdom','United States','Canada','Schengen (Europe)'
 
 const STUDY_DESTINATIONS = [
   { name: 'United Kingdom', icon: 'ph-bank', note: 'Wide range of universities and shorter postgraduate programs.' },
-  { name: 'Canada', icon: 'ph-maple-leaf', note: 'Strong post-study work pathways and welcoming immigration policy.' },
+  { name: 'Canada', icon: 'ph-mountains', note: 'Strong post-study work pathways and welcoming immigration policy.' },
   { name: 'United States', icon: 'ph-flag-banner', note: 'Broad program variety across large and specialized institutions.' },
-  { name: 'Ireland', icon: 'ph-shamrock', note: 'Growing tech and business hub with EU access.' },
-  { name: 'Australia', icon: 'ph-kangaroo', note: 'Quality institutions with year-round intake options.' },
+  { name: 'Ireland', icon: 'ph-clover', note: 'Growing tech and business hub with EU access.' },
+  { name: 'Australia', icon: 'ph-paw-print', note: 'Quality institutions with year-round intake options.' },
   { name: 'Germany', icon: 'ph-buildings', note: 'Low tuition public universities with strong engineering programs.' },
 ];
 
@@ -774,7 +774,7 @@ function initSchoolPage() {
   if (progGrid) {
     progGrid.innerHTML = PROGRAM_LEVELS.map(p => `
       <div class="flex items-center gap-3 bg-white rounded-xl px-5 py-4 shadow-sm border border-navy/5">
-        <i class="ph ${p.icon} text-teal text-xl"></i><span class="font-medium">${p.name}</span>
+        <i class="ph ${p.icon} text-teal text-xl"></i><span class="font-medium text-navy">${p.name}</span>
       </div>
     `).join('');
   }
